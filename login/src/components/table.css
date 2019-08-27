@@ -1,5 +1,5 @@
 #title {
-    padding-top: 30px;
+    padding-top: 50px;
     text-align: center;
     font-family: arial, sans-serif;
   }
@@ -17,12 +17,12 @@
     padding: 8px;
   }
   
-  /* #students tr:nth-child(even){background-color: #f2f2f2;} */
+  #students tr:nth-child(even){background-color: #f2f2f2;}
   
   #students tr:hover {background-color: #ddd;}
   
   #students th {
-    padding-top: 30px;
+    padding-top: 20px;
     padding-bottom: 12px;
     text-align: center;
     background-color: #4CAF50;

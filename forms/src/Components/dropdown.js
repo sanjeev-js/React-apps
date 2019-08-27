@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 // import DynamicSelect from './select';
 
-const school = [{id: '1 - Sbv', name: 'Sbc'},
+const school = [{id: '1 - Sbv', name: 'Sbv'},
   {id: '2 - Skv',name: 'Skv'},
   {id: '3 - Dps',name: 'Dps'}];
 
 
 class Select extends Component{
-    //On the change event for the select box pass the selected value back to the parent
     handleChange = (event) =>{
         let selectedValue = event.target.value;
         this.props.onSelectChange(selectedValue);

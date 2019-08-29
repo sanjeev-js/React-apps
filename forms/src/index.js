@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Form from './Components/form'
+import UserInfo from './Components/form'
 
-ReactDOM.render(<Form />, document.getElementById('root'));
+ReactDOM.render(<UserInfo />, document.getElementById('root'));

@@ -4,58 +4,106 @@ class UserInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user :{
-      name: "",
-      email: "",
-      phone: "",
-      school: "",
-      study: "",
-      aadhar : 'no',
-      pan : 'no'
+      checked: false,
+      user: {
+        name: "",
+        email: "",
+        phone: "",
+        school: "",
+        study: "",
+        aadhar: false,
+        pan: false
       }
     };
   }
 
   handleFullName = e => {
-    this.setState({user:{name: e.target.value}});
-    console.log("name",this.state.user.name);
+    this.setState({ user: { name: e.target.value } });
+    console.log("name", this.state.user.name);
   };
 
   handleEmail = e => {
-    this.setState({user:{ email: e.target.value }});
-    console.log("email",this.state.user.email);
+    this.setState({ user: { email: e.target.value } });
+    console.log("email", this.state.user.email);
   };
 
   handlePhone = e => {
-    this.setState({user:{ phone: e.target.value }});
-    console.log("phone",this.state.user.phone);
+    this.setState({ user: { phone: e.target.value } });
+    console.log("phone", this.state.user.phone);
   };
 
   handleSelect = e => {
-    this.setState({user:{ school: e.target.value }});
-    console.log("school",this.state.user.school);
+    this.setState({ user: { school: e.target.value } });
+    console.log("school", this.state.user.school);
   };
   handleRadioButtons = e => {
-    this.setState({user:{ study: e.target.value }});
+    this.setState({ user: { study: e.target.value } });
     console.log(this.state.user.study);
   };
 
   handleCheckBox = e => {
+    // this.setState({ checked: true });
+    // // console.log(this.state, "after checked to true")
+    // if (this.state.checked) {
+    //   if (e.target.name === "aadhar") {
+    //     this.setState({ user: { aadhar: e.target.value } });
+    //   } else {
+    //     this.setState({ user: { pan: e.target.value } });
+    //   }
+    // } else {
+    //   if (e.target.name === "aadhar") {
+    //     this.setState({ user: { aadhar: "no" } });
+    //   } else {
+    //     this.setState({ user: { pan: "no" } });
+    //     // console.log(this.state);
+    //   }
+    // }
     if (e.target.name === "aadhar") {
-      this.setState ({user:{aadhar :e.target.value}});
-    }else{
-      this.setState({user:{pan:e.target.value}})
+      this.setState(prevState => ({
+        user: {
+          ...prevState.user,
+          aadhar: !prevState.user.aadhar
+        }
+      }));
+    } else if (e.target.name === "pan") {
+      this.setState(prevState => ({
+        user: {
+          ...prevState.user,
+          pan: !prevState.user.pan
+        }
+      }));
     }
-    console.log (this.state.user)
+    // let newState = {};
+    // if (e.target.name === "aadhar") {
+    //     newState =  {
+    //       aadhar: !prevState.user.aadhar
+    //     }
+    // } else if (e.target.name === "pan") {
+    //     newState = {
+    //       pan: !prevState.user.pan
+    //     }
+      
+    // }
+    // this.setState(prevState => ({
+    //   user: {
+    //     ...prevState.user,
+        
+    //   }
+    // }));
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     let userData = this.state.user;
-    console.log(userData);
+    // console.log(userData);
+  };
+
+  handleCheck = () => {
+    this.setState(prevState => ({ checked: !prevState.checked }));
   };
 
   render() {
+    console.log(this.state);
     return (
       <form>
         <div>
@@ -126,22 +174,19 @@ class UserInfo extends React.Component {
         </div>
         <div>
           <label>
-            {" "}
             <b>Documents:</b>
             <input
               type="checkbox"
-              defaultChecked={false}
               name="aadhar"
-              value="Yes"
-              onClick={this.handleCheckBox}
+              checked={this.state.user.aadhar}
+              onChange={this.handleCheckBox}
             />
             Aadhar card
             <input
               type="checkbox"
-              defaultChecked={false}
               name="pan"
-              value="Yes"
-              onClick={this.handleCheckBox}
+              checked={this.state.user.pan}
+              onChange={this.handleCheckBox}
             />
             Pan Card
           </label>

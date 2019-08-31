@@ -4,8 +4,6 @@ class UserInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: false,
-      user: {
         name: "",
         email: "",
         phone: "",
@@ -13,51 +11,29 @@ class UserInfo extends React.Component {
         study: "",
         aadhar: false,
         pan: false
-      }
-    };
+      };
   }
 
   handleFullName = e => {
-    this.setState({ user: { name: e.target.value } });
-    console.log("name", this.state.user.name);
+    this.setState({name: e.target.value});
   };
 
   handleEmail = e => {
-    this.setState({ user: { email: e.target.value } });
-    console.log("email", this.state.user.email);
+    this.setState({ email: e.target.value});
   };
 
   handlePhone = e => {
-    this.setState({ user: { phone: e.target.value } });
-    console.log("phone", this.state.user.phone);
+    this.setState({phone: e.target.value});
   };
 
   handleSelect = e => {
-    this.setState({ user: { school: e.target.value } });
-    console.log("school", this.state.user.school);
+    this.setState({school: e.target.value});
   };
   handleRadioButtons = e => {
-    this.setState({ user: { study: e.target.value } });
-    console.log(this.state.user.study);
+    this.setState({study: e.target.value});
   };
 
   handleCheckBox = e => {
-    // this.setState({ checked: true });
-    // // console.log(this.state, "after checked to true")
-    // if (this.state.checked) {
-    //   if (e.target.name === "aadhar") {
-    //     this.setState({ user: { aadhar: e.target.value } });
-    //   } else {
-    //     this.setState({ user: { pan: e.target.value } });
-    //   }
-    // } else {
-    //   if (e.target.name === "aadhar") {
-    //     this.setState({ user: { aadhar: "no" } });
-    //   } else {
-    //     this.setState({ user: { pan: "no" } });
-    //     // console.log(this.state);
-    //   }
-    // }
     if (e.target.name === "aadhar") {
       this.setState(prevState => ({
         user: {
@@ -73,33 +49,11 @@ class UserInfo extends React.Component {
         }
       }));
     }
-    // let newState = {};
-    // if (e.target.name === "aadhar") {
-    //     newState =  {
-    //       aadhar: !prevState.user.aadhar
-    //     }
-    // } else if (e.target.name === "pan") {
-    //     newState = {
-    //       pan: !prevState.user.pan
-    //     }
-      
-    // }
-    // this.setState(prevState => ({
-    //   user: {
-    //     ...prevState.user,
-        
-    //   }
-    // }));
   };
 
   handleSubmit = e => {
     e.preventDefault();
     let userData = this.state.user;
-    // console.log(userData);
-  };
-
-  handleCheck = () => {
-    this.setState(prevState => ({ checked: !prevState.checked }));
   };
 
   render() {

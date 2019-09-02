@@ -5,6 +5,12 @@ class Form extends React.Component {
     super(props);
     this.state = { TemperatureOfDelhi: 36, TemperatureOfMumbai: 34 };
   }
+
+  handleChange = () => {
+
+  }
+
+
   render() {
     return (
       <div>
@@ -17,3 +23,5 @@ class Form extends React.Component {
     );
   }
 }
+
+export default Form;

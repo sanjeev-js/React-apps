@@ -1,79 +1,121 @@
 import React from "react";
+import './table.css'
 
-var data = {};
+var data = {}
+var allData = [ {
+  name : "",
+  email: "",
+  phone: "",
+  school: "",
+  study: "",
+  aadhar: false,
+  pan: false
+}]
 
 class UserInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      students: [
-        { id: 1, name: 'Wasif', age: 21, email: 'wasif@email.com' },
-        { id: 2, name: 'Ali', age: 19, email: 'ali@email.com' },
-        { id: 3, name: 'Saad', age: 16, email: 'saad@email.com' },
-        { id: 4, name: 'Asad', age: 25, email: 'asad@email.com' }],
-        name: "",
-        email: "",
-        phone: "",
-        school: "",
-        study: "",
-        aadhar: false,
-        pan: false
-      };
+    this.state = {  
+      name : "",
+      email: "",
+      phone: "",
+      school: "",
+      study: "",
+      aadhar: false,
+      pan: false
+    };
   }
 
   handleFullName = e => {
-    this.setState({name: e.target.value});
+    this.setState({ name: e.target.value });
   };
 
   handleEmail = e => {
-    this.setState({ email: e.target.value});
+    this.setState({ email: e.target.value });
   };
 
   handlePhone = e => {
-    this.setState({phone: e.target.value});
+    this.setState({ phone: e.target.value });
   };
 
   handleSelect = e => {
-    this.setState({school: e.target.value});
+    this.setState({ school: e.target.value });
   };
   handleRadioButtons = e => {
-    this.setState({study: e.target.value});
+    this.setState({ study: e.target.value });
   };
 
   handleCheckBox = e => {
     if (e.target.name === "aadhar") {
-      this.setState({aadhar: !this.state.aadhar})
+      this.setState({ aadhar: !this.state.aadhar });
     } else if (e.target.name === "pan") {
-      this.setState({pan: !this.state.pan})
+      this.setState({ pan: !this.state.pan });
     }
   };
 
-  handleSubmit = e => {
-    e.preventDefault(); 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    data.name = this.state.name;
+    data.email = this.state.email;
+    data.phone = this.state.phone;
+    data.school = this.state.school;
+    data.study = this.state.study;
+    data.aadhar = this.state.aadhar;
+    data.pan = this.state.pan;
+    allData.push (data)
+    this.setState({
+      name: "",
+      email: "",
+      phone: "",
+      school: "",
+      study: "",
+      aadhar: false,
+      pan: false
+    });
+    document.getElementById('one').checked = false;
+    document.getElementById('two').checked = false;
+    document.getElementById('three').checked = false;
   };
 
   renderTableData() {
-    return this.state.students.map((student, index) => {
-        const { id, name, age, email } = student 
-        return (
-        <tr key={id}>
-            <td>{id}</td>
-            <td>{name}</td>
-            <td>{age}</td>
-            <td>{email}</td>
+    return allData.map((student, index) => {
+      const {name, email, phone, school, study, aadhar, pan} = student;
+      return (
+        <tr key={index}>
+          <td>{name}</td>
+          <td>{email}</td>
+          <td>{phone}</td>
+          <td>{school}</td>
+          <td>{study}</td>
+          <td>{aadhar}</td>
+          <td>{pan}</td>
         </tr>
-        )
-    })
-}
-renderTableHeader() {
-    let header = Object.keys(this.state.students[0])
+      );
+    });
+  }
+  renderTableHeader() {
+    let header = Object.keys(allData[0]);
     return header.map((key, index) => {
-        return <th key={index}>{key.toUpperCase()}</th>
-    })
-}
+      return <th key={index}>{key.toUpperCase()}</th>;
+    });
+  }
+
+  handleEdit = (e) => {
+    e.preventDefault();
+    this.setState ({name: data.name})
+    this.setState ({email: data.email})
+    this.setState ({phone: data.phone})
+    this.setState ({school : data.school})
+    this.setState ({study: data.study})
+    this.setState ({aadhar : data.aadhar})
+    this.setState ({pan : data.pan})
+    document.getElementById('one').checked = data.study;
+    document.getElementById('two').checked = data.aadhar;
+    document.getElementById('three').checked = data.pan;
+  }
 
   render() {
-    console.log(this.state);
+    console.log(allData);
     return (
       <form>
         <div>
@@ -130,6 +172,7 @@ renderTableHeader() {
               type="radio"
               name="study"
               value="yes"
+              id = "one"
               onClick={this.handleRadioButtons}
             />
             Yes
@@ -137,6 +180,7 @@ renderTableHeader() {
               type="radio"
               name="study"
               value="no"
+              id = "one"
               onClick={this.handleRadioButtons}
             />
             NO
@@ -148,6 +192,7 @@ renderTableHeader() {
             <input
               type="checkbox"
               name="aadhar"
+              id = "two"
               checked={this.state.aadhar}
               onChange={this.handleCheckBox}
             />
@@ -155,6 +200,7 @@ renderTableHeader() {
             <input
               type="checkbox"
               name="pan"
+              id = "three"
               checked={this.state.pan}
               onChange={this.handleCheckBox}
             />
@@ -163,15 +209,15 @@ renderTableHeader() {
         </div>
         <div>
           <input type="submit" value="submit" onClick={this.handleSubmit} />
+          <button onClick={this.handleEdit}>Edit</button>
         </div>
         <div>
-            <h2 id='title'>Table</h2>
-            <table align= "center"id='students'>
-                <tbody>
-                    <tr>{this.renderTableHeader()}</tr>
-                    {this.renderTableData()}
-                </tbody>
-            </table>
+          <table align="center" id="students">
+            <tbody>
+              <tr>{this.renderTableHeader()}</tr>
+              {this.renderTableData()}
+            </tbody>
+          </table>
         </div>
       </form>
     );

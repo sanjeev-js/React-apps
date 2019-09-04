@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { EADDRNOTAVAIL } from "constants";
 
 class TodoApp extends React.Component {
   constructor(props) {
@@ -14,7 +13,7 @@ class TodoApp extends React.Component {
     return (
       <div>
         <h3>TODO</h3>
-        <TodoList items={this.state.items} handleEdit={this.handleEdit} />
+        <TodoList items={this.state.items} handleEdit={this.handleEdit} handleComplete = {this.handleComplete} />
         <form onSubmit={this.handleSubmit}>
           <label>What's needs to be Do?</label>
           <input onChange={this.handleChange} value={this.state.text} />
@@ -35,7 +34,7 @@ class TodoApp extends React.Component {
     }
     if (this.state.editItemId !== null) {
       var elem = this.state.items.find(
-        element => this.state.editItemId === element.id
+        e => this.state.editItemId === e.id
       );
       var elemIndex = this.state.items.indexOf(elem);
       var newItems = this.state.items.slice();
@@ -60,11 +59,14 @@ class TodoApp extends React.Component {
 
   handleEdit = (e, id) => {
     var editableItem = this.state.items.find(element => element.id === id);
-    console.log(editableItem);
     this.setState({ text: editableItem.text, editItemId: editableItem.id });
   };
 
-  handleComplete = e => {};
+  handleComplete = (e, id) => {
+    var CompletedItems = this.state.items.find (element => element.id === id);
+    var DeletedItem = CompletedItems;
+
+  };
 }
 
 class TodoList extends React.Component {
@@ -77,7 +79,7 @@ class TodoList extends React.Component {
             <button onClick={e => this.props.handleEdit(e, item.id)}>
               Edit
             </button>
-            <button onClick={this.handleComplete}>Complete</button>
+            <button onClick={e => this.props.handleComplete(e, item.id)}>Complete</button>
           </div>
         ))}
       </ul>

@@ -1,0 +1,57 @@
+form {
+  border: 3px solid #f1f1f1;
+  width : 50%;
+}
+
+input[name = "email"]{
+  width: 80%;
+  padding: 12px 30px;
+  margin : 8px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+input[name = "password"]{
+  width: 80%;
+  padding: 12px 30px;
+  margin : 8px ;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  align-self: center;
+  justify-content: first baseline;
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  margin: 8px 75px;
+  border: none;
+  cursor: pointer;
+  width: 80%;
+  border: 2px solid #ccc;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px;
+  background-color: #f44336;
+}
+
+.container {
+  padding: 10px;
+  align-content: center;
+  justify-content: center;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+  margin-right: 60px;
+}

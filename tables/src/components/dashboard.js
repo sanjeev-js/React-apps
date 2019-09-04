@@ -9,7 +9,7 @@ class DashBoard extends React.Component {
   render() {
     return (
       <div>
-      <Header />  
+      <Header />
       <Table />
       <Search />
       <Footer />

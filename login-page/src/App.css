@@ -11,6 +11,18 @@ input[name = "email"]{
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
+input[name = "submit"]{
+  align-self: center;
+  justify-content: first baseline;
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  margin: 8px 75px;
+  border: none;
+  cursor: pointer;
+  width: 80%;
+  border: 2px solid #ccc;
+}
 
 input[name = "password"]{
   width: 80%;

@@ -4,7 +4,7 @@ import "./App.css";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: "", password: "" , auth_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lciI6eyJlbWFpbCI6InNhbmplZXYxOEBnbWFpbC5jb20iLCJwYXNzd29yZCI6InBhc3N3b3JkIn0sImlhdCI6MTU2NzY2MDY3NywiZXhwIjoxNTY3NzQ3MDc3fQ.NGlbxSWt3c4nrFvctGsy4IQNQBFXajdWSVCO0fxIf3o"};
+    this.state = { email: "", password: "" , auth_token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lciI6eyJlbWFpbCI6InNhbmplZXYxOEBnbWFpbC5jb20iLCJwYXNzd29yZCI6InBhc3N3b3JkIn0sImlhdCI6MTU2NzkyMjUwNCwiZXhwIjoxNTY4MDA4OTA0fQ.3TYen2NNi3v1dMykJSjomgmzCSNlV-iGkUk2BuVy9tk"};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleLogin.bind(this);
@@ -20,7 +20,7 @@ class App extends React.Component {
 
   handleLogin = async (event) => {
     event.preventDefault();
-      fetch('https://localhost:5000/customers/login', {
+      fetch('http://localhost:5000/customers/login', {
             method: 'post',
             headers: {
               'Content-Type': 'application/json'
@@ -28,8 +28,9 @@ class App extends React.Component {
             body: JSON.stringify({
               "provider": "username",
               "data": {
-                  "username": this.state.email,
-                  "password": this.state.password
+                  "email": this.state.email,
+                  "password": this.state.password,
+                  "accessToken" :this.state.auth_token
               }
             })
           }).then((response) => response.json())
@@ -38,7 +39,6 @@ class App extends React.Component {
           alert("Error", "Error: "+ res.message);
         }
         else{
-          this.setState({ auth_token: res.auth_token });
           alert("Welcome", " You have succesfully logged in");
           }
         }).catch((error) => {
@@ -54,7 +54,7 @@ class App extends React.Component {
       <h1>Sign In</h1>
         <div>
           <label>
-            <b>Username</b>
+            <b>Email</b>
           </label>
           <input
           onChange = {this.handleChange}
